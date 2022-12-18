@@ -2,7 +2,11 @@ export type Gift = {
     id: string;
     body: string;
     title: string;
-    tags: Tag[];
+    prefectures: Prefecture[];
+    tell:number;
+    business_hours: string;
+    url: string;
+    address:string;
     image: string;
     createdAt: string;
     updatedAt: string;
@@ -10,9 +14,9 @@ export type Gift = {
     revisedAt: string;
   };
   
-  export type Tag = {
+  export type Prefecture = {
     id: string;
-    tag: string;
+    prefecture_name: string;
     createdAt: string;
     updatedAt: string;
     publishedAt: string;

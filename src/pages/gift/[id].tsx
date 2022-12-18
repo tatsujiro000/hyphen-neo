@@ -42,11 +42,17 @@ import {
       <main>
         <h1>{gift.title}</h1>
         <p>{gift.publishedAt}</p>
-              {gift.tags.map((tag) => (
-          <li key={tag.id}>
-            #{tag.tag}
+              {gift.prefectures.map((prefecture) => (
+          <li key={prefecture.id}>
+            #{prefecture.prefecture_name}
           </li>
         ))}
+        <div>
+          <p>電話番号：{gift.tell}</p>
+          <p>営業時間：{gift.business_hours}</p>
+          <p>サイトurl：{gift.url}</p>
+          <p>住所：{gift.address}</p>
+        </div>
         <div
           dangerouslySetInnerHTML={{
             __html: `${gift.body}`,
