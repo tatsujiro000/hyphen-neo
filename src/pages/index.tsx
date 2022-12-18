@@ -104,30 +104,29 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                 <Grid item xs={12} sm={4} key={gift.id} sx={{ p: 1, marginRight: 'auto' }}>
 
                   <Card sx={{ maxWidth: 345 }}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        width="100%"
-                        height="auto"
-                        image={`/images/${gift.image}`}
-                        // image="/static/images/cards/contemplative-reptile.jpg"
-                        alt="green iguana"
-                      />
-                      <CardContent>
-                        <Link href={`/gift/${gift.id}`}>
-                          <Typography gutterBottom variant="h5" component="div">
-                            {gift.title}
-                          </Typography>
-                        </Link>
-                        <Typography variant="body2" color="text.secondary">
-                          {gift.body}
-                          {gift.prefectures.map((prefecture) => (
-                            <p>
-                              #{prefecture.prefecture_name}
-                            </p>
-                          ))}
-                        </Typography>
-                      </CardContent>
+                    <CardActionArea href={`/gift/${gift.id}`}>
+                        <CardMedia
+                          component="img"
+                          width="100%"
+                          height="auto"
+                          image={`/images/${gift.image}`}
+                          alt="green iguana"
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                {gift.title}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {gift.body}
+                            </Typography>
+
+                              {gift.prefectures.map((prefecture) => (
+                                  // pの中に入れて怒られるやつね
+                                  <Typography variant="body2" color="text.secondary">
+                                    #{prefecture.prefecture_name}
+                                  </Typography>
+                              ))}
+                        </CardContent>
                     </CardActionArea>
                   </Card>
 

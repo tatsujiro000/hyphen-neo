@@ -2,10 +2,12 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import RestoreIcon from '@mui/icons-material/Restore';
+import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArchiveIcon from '@mui/icons-material/Archive';
+import PersonIcon from '@mui/icons-material/Person';
 import Paper from '@mui/material/Paper';
+
+import Link from 'next/link';
 
 
 export default function FixedBottomNavigation() {
@@ -23,9 +25,11 @@ export default function FixedBottomNavigation() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+            <Link href="/">
+                <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+            </Link>
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Archive" icon={<ArchiveIcon />} />
+          <BottomNavigationAction label="Mypage" icon={<PersonIcon />} />
         </BottomNavigation>
       </Paper>
     </Box>
