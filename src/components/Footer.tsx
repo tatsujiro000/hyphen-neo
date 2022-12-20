@@ -25,8 +25,8 @@ export default function FixedBottomNavigation() {
             setValue(newValue);
           }}
         >
-            <Link href="/">
-                <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+            <Link href={"/"}>
+                <BottomNavigationAction label="Home" icon={<HomeIcon />} />            
             </Link>
           <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
           <BottomNavigationAction label="Mypage" icon={<PersonIcon />} />

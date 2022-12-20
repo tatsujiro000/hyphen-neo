@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Link from "next/link";
 import type { InferGetStaticPropsType, NextPage } from "next";//後で調べる
-import { client } from "libs/client";    // srcから見た絶対パスで指定
-import type { Gift, Prefecture } from "types/gift";    // srcから見た絶対パスで指定
+import { client } from "libs/client";
+import type { Gift, Prefecture } from "types/gift";
 import Image from 'next/image'
 
 import List from '@mui/material/List';
@@ -16,6 +16,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 import FixedBottomNavigation from '../components/Footer'
@@ -35,7 +38,7 @@ export const getStaticProps = async () => {
 
 
 
-// Props（blogsとprefecture）の型
+// Props（giftsとprefecture）の型
 type Props = {
   gifts: Gift[];
   prefectures: Prefecture[];
@@ -54,7 +57,21 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     setShowGifts(gifts);
   }, []);
 
+  // useEffect(() => {
+  //   const postData = async () => {
+  //     await fetch('/api/gift', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ title: 'test' }),
+  //     });
+  //   };
+  //   postData();
+  // }, []);
+
   const selectPrefecture = (prefectures: string) => {
+    console.log("はっか")
     if (prefectures === "all") {
       setShowGifts(gifts);
     } else {
@@ -65,15 +82,12 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       setShowGifts(selectPrefecture);
     }
   
-    // 画面最上部へスクロールさせる
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
 
-  // console.log(gifts)
-  // console.log(prefecture)
   return (
     <>
 
@@ -86,6 +100,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             <ListItemButton onClick={() => selectPrefecture("all")}>
               <ListItemText primary="All"/>  
             </ListItemButton>
+
 
             {prefectureList.map((prefecture) => (
               <ListItemButton key={prefecture} onClick={() => selectPrefecture(prefecture)}>
@@ -121,7 +136,6 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                             </Typography>
 
                               {gift.prefectures.map((prefecture) => (
-                                  // pの中に入れて怒られるやつね
                                   <Typography variant="body2" color="text.secondary">
                                     #{prefecture.prefecture_name}
                                   </Typography>
@@ -130,8 +144,6 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
                     </CardActionArea>
                   </Card>
 
-
-                   
                     
                 </Grid>
               ))}
